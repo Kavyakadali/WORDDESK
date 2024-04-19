@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Puzzle Game</title>
+    <link href="C:\Users\kavya\Downloads\worddesk\puzzle1\style.css" rel="stylesheet" />
+    <link href="C:\Users\kavya\Downloads\worddesk\puzzle1\image-puzzle.css" rel="stylesheet" />
+    <script src="C:\Users\kavya\Downloads\worddesk\puzzle1\js\jquery2.1.js"></script>
+    <script src="C:\Users\kavya\Downloads\worddesk\puzzle1\js\jquery-ui.js"></script>
+    <script src="C:\Users\kavya\Downloads\worddesk\puzzle1\js\image-puzzle.js"></script>
+</head>
+<body>
+    <div id="collage">
+        <h2><strong>Puzzle Game</strong></h2>
+        <hr />
+        <div id="playPanel" style="padding:5px;display:none;">
+            <h3 id="imgTitle"></h3> <hr />
+            <div style="display:inline-block; margin:auto; width:95%; vertical-align:top;">
+                <ul id="sortable" class="sortable"></ul>
+                <div id="actualImageBox">
+                    <div id="stepBox">
+                        <div>Count:</div><div class="stepCount">0</div>
+                    </div>
+                    <div id="timeBox">
+                        Time: <span id="timerPanel"></span> seconds
+                    </div>
+                    <img id="actualImage" />
+                    <div>See the picture and solve the puzzle.</div>
+                    <p id="levelPanel">
+                        <input type="radio" name="level" id="easy" checked="checked" value="3" /> <label for="easy">Easy</label>
+                        <input type="radio" name="level" id="medium" value="4" /> <label for="medium">Medium</label>
+                        <input type="radio" name="level" id="hard" value="5" /> <label for="hard">Hard</label>
+						<input type="radio" name="level" id="veryhard" value="6" /> <label for="veryhard">Very Hard</label>
+                    </p>
+                    <div>
+                        <button id="btnRule" type="button" class="btn" onclick="rules();">Rules</button>
+                        <button id="newPhoto" type="button" class="btn">Next Picture</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="gameOver" style="display:none;">
+            <div style="background-color: #fc9e9e; padding: 5px 10px 20px 10px; text-align: center; ">
+                <h2 style="text-align:center">Game over !!</h2>
+                Congratulations!! <br /> You got the picture ready.
+                <br />
+                Time: <span class="stepCount">0</span> gear.
+                <br />
+                Time spent: <span class="timeCount">0</span> seconds<br />
+                <div>
+                    <button type="button" onclick="window.location.reload(true);">Play more</button>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a href="C:\Users\kavya\Downloads\worddesk\maingame.html">
+            <button  class="button1"> GAME HOME! </button></a>
+          </div>
+
+        <script>
+            var images = [
+                { src: 'https://ik.imagekit.io/6mq3kr2p7/bhutan.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1670735861113', title: 'Tiger’s Nest Temple, Bhutan' },
+                { src: 'https://ik.imagekit.io/6mq3kr2p7/vietnam.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1670735971639', title: 'Ha Long Bay, Vietnam' },
+                { src: 'https://ik.imagekit.io/6mq3kr2p7/taj_mahal.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1670735950796', title: 'Taj Mahal in Agra' },
+                { src: 'https://ik.imagekit.io/6mq3kr2p7/china.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1670735896409', title: 'Great Wall of China, China' },
+                { src: 'https://ik.imagekit.io/6mq3kr2p7/kohila.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1670735926011', title: 'Kohila mill' }
+            ];
+
+            $(function () {
+                var gridSize = $('#levelPanel :radio:checked').val();
+                imagePuzzle.startGame(images, gridSize);
+                $('#newPhoto').click(function () {
+                    var gridSize = $('#levelPanel :radio:checked').val();
+                    imagePuzzle.startGame(images, gridSize);
+                });
+
+                $('#levelPanel :radio').change(function (e) {
+                    var gridSize = $(this).val();
+                    imagePuzzle.startGame(images, gridSize);
+                });
+            });
+            function rules() {
+                alert('Rearrange the pieces so that you get a sample image. \nThe steps taken are counted');
+            }
+        </script>
+    </div>
+</body>
+</html>
